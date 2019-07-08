@@ -18,18 +18,13 @@ from celery.schedules import crontab
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # CELERY STUFF
-BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+BROKER_URL = 'amqp://localhost',  # 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'amqp://localhost'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
-CELERY_BEAT_SCHEDULE = {
-    'task-number-one': {
-        'task': 'newApp.tasks.add2',
-        'schedule': crontab(minute='*/1'),
-        'args': (1, 2)
-    }}
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
